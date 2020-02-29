@@ -8,27 +8,34 @@ int main ()
     for(i=0; i<n; i++)
         a[i]=i+1;
 
-    while(n)
+    do
         {
-            p=0;
-            for(i=0; i<n; i++)
-                if(i%2==0)
-                    {
-
-                        b[p++]=a[i];
-                    }
-            if(p==1)
-                break;
-            for(i=0; i<p; i++)
+            if(n%2==0)
                 {
-                    a[i]=b[i];
-                   // cout<<a[i]<<" ";
-                }
-            n=p;
-            c=p;
+                    for(i=0; i<n/2; i+=2)
 
+                        {
+                            b[i/2]=a[i];
+                        }
+
+                    for(i=0; i<n/2; i++)
+                        a[i]=b[i];
+                }
+
+            if(n%2==1)
+                {
+                    for(i=2; i<n; i+=2)
+                        {
+                            b[(i-1)/2]=a[i];
+                        }
+
+                    for(i=0; i<n/2; i++)
+                        a[i]=b[i];
+                }
+            n/=2;
         }
-    for(i=1; i<=p; i++)
-       cout<<b[i]<<" ";
+    while(n>1);
+    for(i=0; i<n; i++)
+        cout<<a[i]<<" ";
 
 }
